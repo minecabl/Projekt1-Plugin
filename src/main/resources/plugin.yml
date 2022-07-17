@@ -1,0 +1,19 @@
+name: Jobs
+version: '${project.version}'
+main: jobs.jobs.Jobs
+api-version: 1.18
+
+commands:
+  jobs:
+    description: Lists all Experience of Jobs
+    usage: /<command>
+    aliases:
+      - berufe
+      - beruf
+      - job
+
+  destroy:
+    description: Drop player from DB
+    usage: /<command>
+    aliases:
+      - drop

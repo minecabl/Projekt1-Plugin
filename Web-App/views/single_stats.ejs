@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Projekt Tofan</title>
+        <meta name="author" content="Stefan Kapsreiter und Toni Völpel">
+        <meta name="editor" content="VS Code">
+        <link rel="icon" href="https://www.greifennarren.de/logo.png">
+        <style>
+            #page-container h1{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            position: sticky;
+        }
+
+        body{
+            display: block;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+        }
+
+        table{
+            border: 1px solid black;
+            text-align: center;
+            margin-right: auto;
+            margin-left: auto;
+            width: 60%; 
+        }
+
+        th{
+            background-color: #121007;
+            color: white;
+        }
+
+        td{
+            background-color: #123e44;
+            color: #db8213;
+            width: 30px;
+        }
+
+        #page-container {
+            position: relative;
+            min-height: 100vh;
+        }
+
+        select {
+            margin-left: 1%;
+        }
+
+        footer {
+            position: relative;
+            width: 100%;
+            bottom: 0;
+            color: white;
+            background-color: #121007;
+            text-align: center;
+            height: 20px;
+        }
+
+        #bg{
+            background-image: url("https://browsecat.net/sites/default/files/minecraft-background-free-wallpapers-78787-587209-7451178.png");
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        </style>
+    </head>
+    <body id="bg">
+        <div id="page-container">
+            <h1>Projekt Tofan</h1>
+            <%      var i = Math.floor(Math.random() * spielers.length) %>
+                <h1><%= spielers[i].name %></h1>
+                <table>
+                    <tr>
+                        <th>Kategorie</th>
+                        <th>Wert</th>
+                    </tr>
+                    <tr>
+                        <td>Bauer-Level</td>
+                        <td><%= Math.floor(Math.sqrt((spielers[i].currentExp[1]-100)/25)) %></td>
+                    </tr>
+                    <tr>
+                        <td>Bergarbeiter-Level</td>
+                        <td><%= Math.floor(Math.sqrt((spielers[i].currentExp[2]-100)/25)) %></td>
+                    </tr>
+                    <tr>
+                        <td>Holzfäller-Level</td>
+                        <td><%= Math.floor(Math.sqrt((spielers[i].currentExp[3]-100)/25)) %></td>
+                    </tr>
+                    <tr>
+                        <td>Goldgräber-Level</td>
+                        <td><%= Math.floor(Math.sqrt((spielers[i].currentExp[4]-100)/25)) %></td>
+                    </tr>
+                    <tr>
+                        <td>Kämpfer-Level</td>
+                        <td><%= Math.floor(Math.sqrt((spielers[i].currentExp[5]-100)/25)) %></td>
+                    </tr>
+                    <tr>
+                        <td>abgebaute Blöcke</td>
+                        <td><%= spielers[i].blocksMined %></td>
+                    </tr>
+                    <tr>
+                        <td>platzierte Blöcke</td>
+                        <td><%= spielers[i].blocksPlaced %></td>
+                    </tr>
+                    <tr>
+                        <td>Anzahl der Kills</td>
+                        <td><%= spielers[i].playersKilled %></td>
+                    </tr>
+                    <tr>
+                        <td>Anzahl der Tode</td>
+                        <td><%= spielers[i].deaths %></td>
+                    </tr>
+                    <tr>
+                        <td>Gesamtspielzeit (hh:mm:ss)</td>
+                        <%  var hours = Math.floor(spielers[i].playtime/3600)
+                            var restTime = spielers[i].playtime - hours * 3600
+                            var minutes = Math.floor(restTime/60)
+                            restTime = restTime - minutes * 60
+                            %>
+                        <td><%= hours %>:<%= minutes %>:<%= restTime %></td>
+                    </tr>
+                    <tr>
+                        <td>getötete Tiere</td>
+                        <td><%= spielers[i].animalsKilled %></td>
+                    </tr>
+                    <tr>
+                        <td>getötete Monster</td>
+                        <td><%= spielers[i].monstersKilled %></td>
+                    </tr>
+                </table>       
+        </div>
+    </body> 
+    <footer>&copy; 2022 Projekt1 - Angewandte Informatik Stefan Kapsreiter, Toni Völpel</footer>
+</html>

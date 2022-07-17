@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+
+<html>
+ <head>
+    <head>
+        <title>Projekt Tofan</title>
+        <meta name="author" content="Stefan Kapsreiter und Toni Völpel">
+        <meta name="editor" content="VS Code">
+        <link rel="icon" href="https://www.greifennarren.de/logo.png">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore.js"></script>
+        <style>
+            #page-container h1{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            position: sticky;
+        }
+
+        #weiterleitung {
+            margin-left: 0.5%;
+            border-radius: 5px;
+            border: solid 1px #000000;
+            background: #808080;
+            padding: 5px;
+            width: 60vh;
+            text-align: center;
+        }
+
+        #weiterleitung a{
+            color: #000000;
+            text-decoration: none;
+        }
+
+        body{
+            display: block;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+        }
+
+        body input{
+            position:absolute;
+            top: 0;
+            left: 0;
+            width: 250px;
+            background-color: white;
+            border-radius: 0.5rem;
+            margin-top: 0.5%;
+            margin-left: 1%;
+        }
+
+        #container #table1{
+            margin-left: 0.5%;
+            grid-area: top-left;
+        }
+
+        #container #table2{
+            grid-area: top-middle;
+        }
+
+        #container #table3{
+            margin-right: 0.5%;
+            grid-area: top-right;
+        }
+
+        #container #table4{
+            margin-left: 0.5%;
+            grid-area: middle-left;
+        }
+
+        #container #table5{
+            grid-area: middle-middle;
+        }
+
+        #container #table6{
+            margin-right: 0.5%;
+            grid-area: middle-right;
+        }
+
+        #container #table7{
+            margin-left: 0.5%;
+            grid-area: bottom-left;
+        }
+
+        #container #table8{
+            grid-area: bottom-middle;
+        }
+
+        #container #table9{
+            margin-right: 0.5%;
+            grid-area: bottom-right;
+        }
+
+        #container #table10{
+            margin-left: 0.5%;
+            grid-area: bottom2-left;
+        }
+
+        #container #table11{
+            grid-area: bottom2-middle;
+        }
+
+        #container #table12{
+            margin-right: 0.5%;
+            grid-area: bottom2-right;
+        }
+
+        #container table,th,td{
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        #container th{
+            color: white;
+        }
+
+        #container td{
+            color: #000000;
+        }
+
+        #container{
+            display: grid;
+            grid-template-columns: [first] auto [second] auto [third] auto [end];
+            grid-template-rows: [row1-start] auto [row1-end row2-start] auto [row2-end row3-start] auto [row3-end row4-start] auto [row4-end end];
+            grid-template-areas:
+                "top-left top-middle top-right"
+                "middle-left middle-middle middle-right"
+                "bottom-left bottom-middle bottom-right"
+                "bottom2-left bottom2-middle bottom2-right";
+            column-gap: 20px;
+            row-gap: 20px;
+            margin-bottom: 3vh;
+        }
+
+        #page-container {
+            position: relative;
+            min-height: 100vh;
+        }
+
+        footer {
+            position: relative;
+            width: 100%;
+            bottom: 0;
+            color: white;
+            background-color: #121007;
+            text-align: center;
+            height: 20px;
+        }
+
+        #bg{
+            background-image: url("https://browsecat.net/sites/default/files/minecraft-background-free-wallpapers-78787-587209-7451178.png");
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .first-color{ 
+	        background: #155263; 
+        }
+
+        #container tr:nth-child(2){
+            background: #ffd700;
+        }
+
+        #container tr:nth-child(3){ 
+	        background: #c0c0c0; 
+        }
+
+        #container tr:nth-child(4){  
+	        background: #cd853f; 
+        }
+
+        #container tr:nth-child(5), tr:nth-child(6) { 
+	        background: #ffc93c;
+        }
+
+        </style>
+        </head>
+   <link rel="stylesheet" type="text/css" href="style.css" />
+ </head>
+
+<body id="bg">
+ <div id="page-container">
+     <h1>Projekt Tofan</h1>
+     <h3 id="weiterleitung"> <a href="single_stats">Hier können Sie sich die Daten eines zufälligen Spielers ansehen!</a></h3>
+     <div id="container">
+        <table id="table1">
+            <tr class="first-color">
+                <h1> <%= spielers.name %></h1>
+                <th>Spielername</th>
+                <th>abgebaute Blöcke</th>
+            </tr>
+            <tr>
+                <%   
+                    var n;
+                
+                    spielers.sort(function(a, b){
+                        return b.blocksMined - a.blocksMined;
+                    });
+
+                    <!--Sollte die Anzahl an Spielern kleiner als 5 sein, wird die Anzeige an Spieleranzahl angepasst-->
+                    <!--bei mehr als 5 Spielern sollen nur 5 angezeigt werden (sieht übersichtlicher aus)-->
+                    function evaluate(length){
+                        if (length < 5){
+                            n = length;
+                        }else{
+                            n = 5;
+                        }
+                    }
+                    
+                    evaluate(spielers.length);
+                    for (var i = 0; i < n; i++){ %>
+                        <td><%= spielers[i].name %></td>
+                        <td><%= spielers[i].blocksMined %></td>
+            </tr>
+            <% } %>
+        </table>
+        <table id="table2">
+            <tr class="first-color">
+                <th>Spielername</th>
+                <th>platzierte Blöcke</th>
+            </tr>
+            <tr>
+                <% 
+                    spielers.sort(function(a, b){
+                        return b.blocksPlaced - a.blocksPlaced;
+                    });
+                    for (let i = 0; i < n; i++){ %>
+                        <td><%= spielers[i].name %></td>
+                        <td><%= spielers[i].blocksPlaced %></td>
+            </tr>
+            <% } %>
+        </table>
+        <table id="table3">
+            <tr class="first-color">
+                <th>Spielername</th>
+                <th>Anzahl der Kills</th>
+            </tr>
+            <tr>
+                <%  spielers.sort(function(a, b){
+                        return b.playersKilled - a.playersKilled;
+                    });
+
+                    for (let i = 0; i < n; i++){ %>
+                        <td><%= spielers[i].name %></td>
+                        <td><%= spielers[i].playersKilled %></td>
+            </tr>
+            <% } %>
+        </table>
+        <table id="table4">
+            <tr class="first-color">
+                <th>Spielername</th>
+                <th>Tode</th>
+            </tr>
+            <tr>
+                <%  spielers.sort(function(a, b){
+                        return b.deaths - a.deaths;
+                    });
+
+                    for (let i = 0; i < n; i++){ %>
+                        <td><%= spielers[i].name %></td>
+                        <td><%= spielers[i].deaths %></td>
+            </tr>
+            <% } %>
+        
+        </table>
+        <table id="table5">
+            <tr class="first-color">
+                <th>Spielername</th>
+                <th>Gesamtspielzeit (hh:mm:ss)</th>
+            </tr>
+            <tr>
+                <%  spielers.sort(function(a, b){
+                        return b.playtime - a.playtime;
+                    });
+
+                    for (let i = 0; i < n; i++){ %>
+                        <td><%= spielers[i].name %></td>
+                        <!--Umrechnung der Spielzeit in Minuten-->
+                        <%  var hours = Math.floor(spielers[i].playtime/3600)
+                            var restTime = spielers[i].playtime - hours * 3600
+                            var minutes = Math.floor(restTime/60)
+                            restTime = restTime - minutes * 60
+                        %>
+                        <td><%= hours %>:<%= minutes %>:<%= restTime %></td>
+            </tr>
+            <% } %>
+        </table>
+        <table id="table6">
+            <tr class="first-color">
+                <th>Spielername</th>
+                <th>getötete Tiere</th>
+            </tr>
+            <tr>
+                <%  spielers.sort(function(a, b){
+                        return b.animalsKilled - a.animalsKilled;
+                    });
+                
+                    for (let i = 0; i < n; i++){ %>
+                        <td><%= spielers[i].name %></td>
+                        <td><%= spielers[i].animalsKilled %></td>
+            </tr>
+            <% } %>
+        </table>
+        <table id="table7">
+            <tr class="first-color">
+                <th>Spielername</th>
+                <th>getötete Monster</th>
+            </tr>
+            <tr>
+                <%  spielers.sort(function(a, b){
+                        return b.monstersKilled - a.monstersKilled;
+                    });
+    
+                    for (let i = 0; i < n; i++){ %>
+                        <td><%= spielers[i].name %></td>
+                        <td><%= spielers[i].monstersKilled %></td>
+            </tr>
+            <% } %>
+        </table>
+        <table id="table8">
+            <tr class="first-color">
+                <th>Spielername</th>
+                <th>Bauer-Level</th>
+            </tr>
+            <tr>
+                <%  spielers.sort(function(a, b){
+                        return b.currentExp[1] - a.currentExp[1];
+                    });
+                
+                
+                
+                    for (let i = 0; i < n; i++){ %>
+                        <td><%= spielers[i].name %></td>
+                        <!--Umrechnung der Erfahrungswert auf das entsprechende Spielerlevel-->
+                        <td><%= Math.floor(Math.sqrt((spielers[i].currentExp[1]-100)/25)) %></td>
+            </tr>
+            <% } %>
+        </table>
+        <table id="table9">
+            <tr class="first-color">
+                <th>Spielername</th>
+                <th>Bergarbeiter-Level</th>
+            </tr>
+            <tr>
+                <%  spielers.sort(function(a, b){
+                        return b.currentExp[2] - a.currentExp[2];
+                    });
+    
+                    for (let i = 0; i < n; i++){ %>
+                        <td><%= spielers[i].name %></td>
+                        <!--Umrechnung der Erfahrungswert auf das entsprechende Spielerlevel-->
+                        <td><%= Math.floor(Math.sqrt((spielers[i].currentExp[2]-100)/25)) %></td>
+            </tr>
+            <% } %>
+        </table>
+        <table id="table10">
+            <tr class="first-color">
+                <th>Spielername</th>
+                <th>Holzfäller-Level</th>
+            </tr>
+            <tr>
+                <%  spielers.sort(function(a, b){
+                        return b.currentExp[3] - a.currentExp[3];
+                    });
+
+                    for (let i = 0; i < n; i++){ %>
+                        <td><%= spielers[i].name %></td>
+                        <!--Umrechnung der Erfahrungswert auf das entsprechende Spielerlevel-->
+                        <td><%= Math.floor(Math.sqrt((spielers[i].currentExp[3]-100)/25)) %></td>
+            </tr>
+            <% } %>
+        </table>
+        <table id="table11">
+            <tr class="first-color">
+                <th>Spielername</th>
+                <th>Minenarbeiter-Level</th>
+            </tr>
+            <tr>
+                <%  spielers.sort(function(a, b){
+                        return b.currentExp[4] - a.currentExp[4];
+                    });
+                
+                
+                
+                    for (let i = 0; i < n; i++){ %>
+                        <td><%= spielers[i].name %></td>
+                        <!--Umrechnung der Erfahrungswert auf das entsprechende Spielerlevel-->
+                        <td><%= Math.floor(Math.sqrt((spielers[i].currentExp[4]-100)/25)) %></td>
+            </tr>
+            <% } %>
+        </table>
+        <table id="table12">
+            <tr class="first-color">
+                <th>Spielername</th>
+                <th>Kämpfer-Level</th>
+            </tr>
+            <tr>
+                <%  spielers.sort(function(a, b){
+                        return b.currentExp[5] - a.currentExp[5];
+                    });
+                
+                    for (let i = 0; i < n; i++){ %>
+                        <td><%= spielers[i].name %></td>
+                        <!--Umrechnung der Erfahrungswert auf das entsprechende Spielerlevel-->
+                        <td><%= Math.floor(Math.sqrt((spielers[i].currentExp[5]-100)/25)) %></td>
+            </tr>
+            <% } %>
+        </table>
+   </div>
+ </div>
+</body>
+<footer>&copy; 2022 Projekt1 - Angewandte Informatik Stefan Kapsreiter, Toni Völpel</footer>
+</html>

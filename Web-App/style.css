@@ -1,0 +1,115 @@
+#page-container h1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    position: sticky;
+}
+
+body{
+    position: relative;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+
+body input{
+    grid-area: top-left;
+    /*width: 250px;*/
+    background-color: white;border-radius: 0.5rem;
+    margin-left: 1%;
+}
+
+#container #table1{
+    grid-area: middle-left;
+}
+
+#container #table2{
+    grid-area: middle-middle;
+}
+
+#container #table3{
+    grid-area: middle-right;
+}
+
+#container #table4{
+    grid-area: bottom-left;
+}
+
+#container #table5{
+    grid-area: bottom-middle;
+}
+#container table,th,td{
+    border: 1px solid black;
+    text-align: center;
+}
+
+#container th{
+    background-color: #121007;
+    color: white;
+}
+
+#container td{
+    background-color: #123e44;
+    color: #db8213;
+}
+
+#container{
+    display: grid;
+    grid-template-columns: [first] auto [second] auto [third] auto [end];
+    grid-template-rows: [row1-start] 150px [row1-end row2-start] 15opx [row2-end row3-start] 150px [row3-end end];
+    grid-template-areas:
+        "top-left top-middle top-right"
+        "middle-left middle-middle middle-right"
+        "bottom-left bottom-middle bottom-right";
+    column-gap: 20px;
+    row-gap: 20px;
+    margin-bottom: 3vh;
+    
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+footer {
+    /*position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2.5vh;            
+    text-align: center;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;*/
+    position: relative;
+    width: 100%;
+    bottom: 0;
+    color: white;
+    background-color: #121007;
+    text-align: center;
+    height: 20px;
+  }
+
+#bg{
+    /*background-image: url("minecraft-background-free-wallpapers-78787-587209-7451178.png");*/
+	background-image: url("https://browsecat.net/sites/default/files/minecraft-background-free-wallpapers-78787-587209-7451178.png");
+	height: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+/*To-do: Footbar direkt am unteren Rand montieren, Farben anpassen*/
+
+/*
+.color1 {color: #121007;}
+.color2 {color: #123e44;}
+.color3 {color: #db8213;}
+.color4 {color: #efcd6a;}
+.color5 {color: #f8efc1;}*/ 
